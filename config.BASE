@@ -1,0 +1,21 @@
+# BASE configuration
+#
+# These settings are always applied, regardless of the mode. Refer to
+# http://rpf.io/configtxt /boot/overlays/README and the original config
+
+# We always prefer HDMI over composite output
+hdmi_force_hotplug=1
+
+# RAM/Graphics settings
+gpu_mem_256=128
+gpu_mem_512=256
+gpu_mem_1024=256
+overscan_scale=1
+
+# enable inverse activity LED on GPIO 21
+dtoverlay=pi3-act-led,gpio=16,activelow=on
+
+# shut down on buton press
+dtoverlay=gpio-shutdown
+
+

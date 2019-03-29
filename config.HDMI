@@ -1,0 +1,9 @@
+# This configures the RPi to use HDMI and not the internal LCD screen
+#
+# mode:HDMI keep this line!
+
+# Enable audio (loads snd_bcm2835)
+dtparam=audio=on
+
+# do not enable the builtin LCD
+ignore_lcd=1

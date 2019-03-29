@@ -1,0 +1,8 @@
+# This configures the RPi to use the internal LCD screen and not HDMI
+#
+# mode:LCD keep this line!
+
+# i2s audio output (see also /etc/asound.conf) 
+dtoverlay=hifiberry-dac
+dtoverlay=i2s-mmap
+
