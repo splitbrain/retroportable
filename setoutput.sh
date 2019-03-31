@@ -1,12 +1,23 @@
 #!/bin/bash
+#
+# Configures display and audio output
+#
+# Usage:
+#
+#  call with mode (LCD or HDMI) to set the appropriate config
+#  call with no parameter for autodetection and automatic rebooting
+#  if necessary
 
+# where is this script and it's configs installed?
 ROOT="/home/pi/retroportable"
 
+# print an error message and exit the script
 die() {
 	echo "ERROR: $1" >&2
 	exit 1
 }
 
+# detect which configuration is currently active
 detectConfig() {
 	if grep -q 'mode:LCD' '/boot/config.txt'; then
 		echo 'LCD'
@@ -17,6 +28,7 @@ detectConfig() {
 	fi
 }
 
+# detect if a device is available on HDMI
 detectDevice() {
 	if tvservice -n 2>/dev/null |grep -q 'device_name='; then
 		echo 'HDMI'
@@ -25,6 +37,7 @@ detectDevice() {
 	fi
 }
 
+# set the configuration for the given mode
 setMode() {
 	local MODE=$1
 	cat "$ROOT/config.BASE" "$ROOT/config.$MODE" > /boot/config.txt \
@@ -35,6 +48,8 @@ setMode() {
 	
 	echo "Set output to $MODE"
 }
+
+# MAIN
 
 CONFIGURED=$(detectConfig)
 DETECTED=$(detectDevice)
