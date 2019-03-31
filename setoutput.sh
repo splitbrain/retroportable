@@ -45,6 +45,8 @@ echo "Detected mode is $DETECTED"
 if [ -z "$1" ]; then
 	if [ "$CONFIGURED" != "$DETECTED" ]; then
 		setMode "$DETECTED"
+		echo "rebooting..."
+		/sbin/reboot
 	else
 		echo "nothing to do"
 	fi
